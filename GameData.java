@@ -103,6 +103,19 @@ public final class GameData {
     }
 
     /**
+         * Adds a house using its name, final (15x15) row and column, and order from Appendix D.
+         *
+         * @param w      the world
+         * @param name   the name of the house (e.g. "House A")
+         * @param row    the row in the final 15x15 world (0 is the top row)
+         * @param column the column in the final 15x15 world (0 is the leftmost column)
+         * @param order  the order required by the house
+         */
+        private static void house(World w, String name, int row, int column, Order order) {
+            w.addHouse(new House(name, column - World.MAX_RADIUS, World.MAX_RADIUS - row, order));
+        }
+
+    /**
      * Places the 10 factories of Appendix C. Each one appears when its tile is unlocked.
      *
      * @param w the world
@@ -143,7 +156,7 @@ public final class GameData {
      * candies that the factories accessible at that rank can generate.
      *
      * @param w the world
-     */
+     *
     private static void addHouses(World w) {
         int[][][] positions = {
             {{0, 2}, {3, 0}, {0, -3}, {-3, 1}},
@@ -169,6 +182,144 @@ public final class GameData {
                 number++;
             }
         }
+    }*/
+
+    /**
+     * Places Houses A–P using their exact coordinates, candy orders, and XP rewards from Appendix D.
+     *
+     * @param w the world to add houses to
+     */
+    private static void addHouses(World w) {
+        // 0 Star Houses
+        // House A
+        Order orderA = new Order(100);
+        orderA.addItem(Candy.plain(CandyType.CANDY_CORN), 4);
+        orderA.addItem(new Candy(GUMMY, Flavor.UBE), 2);
+        orderA.addItem(new Candy(LOLLIPOP, Flavor.UBE), 2);
+        orderA.addItem(new Candy(MARSHMALLOW, Flavor.UBE), 2);
+        house(w, "House A", 5, 5, orderA);
+
+        // House B
+        Order orderB = new Order(150);
+        orderB.addItem(Candy.plain(CandyType.CANDY_CORN), 15);
+        house(w, "House B", 9, 6, orderB);
+
+        // House C
+        Order orderC = new Order(250);
+        orderC.addItem(new Candy(GUMMY, Flavor.UBE), 5);
+        orderC.addItem(new Candy(MARSHMALLOW, Flavor.UBE), 5);
+        orderC.addItem(new Candy(PASTILLAS, Flavor.UBE), 5);
+        orderC.addItem(new Candy(YEMA, Flavor.UBE), 5);
+        orderC.addItem(new Candy(POLVORON, Flavor.UBE), 5);
+        house(w, "House C", 7, 10, orderC);
+
+        // 1 Star Houses
+        // House D
+        Order orderD = new Order(400);
+        orderD.addItem(Candy.plain(CandyType.CANDY_CORN), 5);
+        orderD.addItem(Candy.plain(CandyType.CANDY_CANE), 5);
+        orderD.addItem(new Candy(PASTILLAS, Flavor.UBE), 10);
+        orderD.addItem(new Candy(YEMA, Flavor.UBE), 10);
+        orderD.addItem(new Candy(POLVORON, Flavor.UBE), 10);
+        house(w, "House D", 11, 9, orderD);
+
+        // 2 Star Houses
+        // House E
+        Order orderE = new Order(300);
+        orderE.addItem(Candy.plain(CandyType.CANDY_CORN), 10);
+        orderE.addItem(new Candy(YEMA, Flavor.UBE), 5);
+        orderE.addItem(new Candy(PASTILLAS, Flavor.UBE), 5);
+        orderE.addItem(new Candy(LOLLIPOP, Flavor.UBE), 5);
+        orderE.addItem(new Candy(LOLLIPOP, Flavor.MACAPUNO), 5);
+        house(w, "House E", 2, 8, orderE);
+
+        // House F
+        Order orderF = new Order(300);
+        orderF.addItem(new Candy(GUMMY, Flavor.TABLEA), 7);
+        orderF.addItem(new Candy(MARSHMALLOW, Flavor.TABLEA), 7);
+        orderF.addItem(new Candy(PASTILLAS, Flavor.TABLEA), 8);
+        orderF.addItem(new Candy(POLVORON, Flavor.TABLEA), 8);
+        house(w, "House F", 12, 3, orderF);
+
+        // House G
+        Order orderG = new Order(400);
+        orderG.addItem(new Candy(PASTILLAS, Flavor.UBE), 20);
+        orderG.addItem(new Candy(PASTILLAS, Flavor.DURIAN), 10);
+        orderG.addItem(new Candy(PASTILLAS, Flavor.JACKFRUIT), 10);
+        house(w, "House G", 6, 2, orderG);
+
+        // House H
+        Order orderH = new Order(300);
+        orderH.addItem(new Candy(POLVORON, Flavor.UBE), 10);
+        orderH.addItem(new Candy(YEMA, Flavor.UBE), 5);
+        orderH.addItem(new Candy(PASTILLAS, Flavor.UBE), 5);
+        orderH.addItem(new Candy(GUMMY, Flavor.MANGO), 5);
+        orderH.addItem(new Candy(MARSHMALLOW, Flavor.PANDAN), 5);
+        house(w, "House H", 8, 12, orderH);
+
+        // 3 Star Houses
+        // House I
+        Order orderI = new Order(450);
+        orderI.addItem(new Candy(LOLLIPOP, Flavor.JACKFRUIT), 9);
+        orderI.addItem(new Candy(LOLLIPOP, Flavor.DURIAN), 9);
+        orderI.addItem(new Candy(LOLLIPOP, Flavor.PANDAN), 9);
+        orderI.addItem(new Candy(LOLLIPOP, Flavor.UBE), 9);
+        orderI.addItem(new Candy(LOLLIPOP, Flavor.MACAPUNO), 9);
+        house(w, "House I", 1, 4, orderI);
+
+        // House J
+        Order orderJ = new Order(350);
+        orderJ.addItem(Candy.plain(CandyType.CANDY_CORN), 5);
+        orderJ.addItem(new Candy(MARSHMALLOW, Flavor.MANGO), 6);
+        orderJ.addItem(new Candy(YEMA, Flavor.MANGO), 7);
+        orderJ.addItem(new Candy(PASTILLAS, Flavor.MANGO), 8);
+        orderJ.addItem(new Candy(GUMMY, Flavor.MANGO), 9);
+        house(w, "House J", 4, 1, orderJ);
+
+        // House K
+        Order orderK = new Order(400);
+        orderK.addItem(new Candy(GUMMY, Flavor.UBE), 10);
+        orderK.addItem(new Candy(GUMMY, Flavor.MANGO), 10);
+        orderK.addItem(new Candy(GUMMY, Flavor.MACAPUNO), 10);
+        orderK.addItem(new Candy(GUMMY, Flavor.PANDAN), 10);
+        house(w, "House K", 10, 1, orderK);
+
+        // House L
+        Order orderL = new Order(300);
+        orderL.addItem(new Candy(PASTILLAS, Flavor.UBE), 10);
+        orderL.addItem(new Candy(YEMA, Flavor.UBE), 10);
+        orderL.addItem(new Candy(POLVORON, Flavor.UBE), 10);
+        house(w, "House L", 13, 6, orderL);
+
+        // House M
+        Order orderM = new Order(300);
+        orderM.addItem(new Candy(PASTILLAS, Flavor.PANDAN), 10);
+        orderM.addItem(new Candy(YEMA, Flavor.PANDAN), 10);
+        orderM.addItem(new Candy(POLVORON, Flavor.PANDAN), 10);
+        house(w, "House M", 13, 13, orderM);
+
+        // 4 Star Houses
+        // House N
+        Order orderN = new Order(250);
+        orderN.addItem(Candy.plain(CandyType.CANDY_CANE), 16);
+        orderN.addItem(new Candy(POLVORON, Flavor.JACKFRUIT), 3);
+        orderN.addItem(new Candy(POLVORON, Flavor.DURIAN), 3);
+        orderN.addItem(new Candy(LOLLIPOP, Flavor.TABLEA), 3);
+        house(w, "House N", 3, 14, orderN);
+
+        // House O
+        Order orderO = new Order(1000);
+        orderO.addItem(Candy.plain(CandyType.CANDY_CANE), 100);
+        house(w, "House O", 14, 0, orderO);
+
+        // House P
+        Order orderP = new Order(250);
+        orderP.addItem(Candy.plain(CandyType.CANDY_CORN), 5);
+        orderP.addItem(Candy.plain(CandyType.CANDY_CANE), 5);
+        orderP.addItem(new Candy(PASTILLAS, Flavor.MACAPUNO), 5);
+        orderP.addItem(new Candy(YEMA, Flavor.MACAPUNO), 5);
+        orderP.addItem(new Candy(POLVORON, Flavor.MACAPUNO), 5);
+        house(w, "House P", 14, 10, orderP);
     }
 
     /**
